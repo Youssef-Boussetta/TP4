@@ -1,0 +1,32 @@
+public class Exercice1 {
+    public static void main(String[] args) {
+        
+        BankAccount account = new SavingAccount(201 , 3.5 ,1);
+        SavingAccount savingAccount = (SavingAccount) account;
+        System.out.println("Conversion explicite réussie : " + (savingAccount != null));
+        
+        BankAccount anotherAccount = new CheckingAccount(202, 1000.0,1);
+        CheckingAccount checkingAccount = (CheckingAccount) anotherAccount;
+        System.out.println("Conversion explicite réussie : " + (checkingAccount != null));
+       
+        SavingAccount savingAccount1 = new SavingAccount(101, 5.0 ,1);
+        savingAccount1.deposit(1000.0);
+        savingAccount1.withdraw(200.0);
+        System.out.println("Solde du compte épargne : " + savingAccount1.getBalance());
+        
+        CheckingAccount checkA = new CheckingAccount(102, 500.0,1);
+        checkA.deposit(1500.0);
+        checkA.withdraw(800.0);
+        System.out.println("Solde du compte chèque : " + checkA.getBalance());
+        
+        Customer cust = new Customer("John", "Doe");
+        cust.addAccount(savingAccount1);
+        cust.addAccount(checkA);
+        System.out.println("Solde total du client : " + cust.getTotalAccountBalance());
+        
+        Bank b = new Bank();
+        b.addCustomer(cust);
+        System.out.println("Solde total de la banque : " + b.getTotalBalance());
+}
+}
+
